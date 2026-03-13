@@ -378,7 +378,9 @@
         
         /* Mobile */
         @media (max-width: 768px) {
-            nav { display: none; }
+            nav { display: flex; position: fixed; top: 0; left: 0; right: 0; background: #0a0a0f; padding: 15px; justify-content: space-between; }
+            nav > a:not(:first-child) { display: none; }
+            nav .dropdown { display: flex; }
             h1 { font-size: 36px; }
             .flow-arrow { transform: rotate(90deg); }
         }
