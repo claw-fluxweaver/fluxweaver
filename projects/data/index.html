@@ -147,50 +147,45 @@
         
         .card.weather { border-top: 4px solid #22c55e; }
         
-        /* Weather chart - simplified */
+        /* Weather line chart */
         .weather-chart {
-            display: flex;
-            align-items: flex-end;
-            height: 100px;
-            gap: 8px;
+            height: 120px;
             margin-top: 15px;
             padding: 10px;
             background: rgba(255,255,255,0.03);
             border-radius: 8px;
+            position: relative;
         }
-        .weather-bar {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            min-width: 30px;
-        }
-        .weather-temp-range {
+        .weather-chart svg {
             width: 100%;
+            height: 100%;
+        }
+        .weather-line-max {
+            fill: none;
+            stroke: #ef4444;
+            stroke-width: 2;
+        }
+        .weather-line-min {
+            fill: none;
+            stroke: #22c55e;
+            stroke-width: 2;
+        }
+        .weather-line-avg {
+            fill: none;
+            stroke: #eab308;
+            stroke-width: 1.5;
+            stroke-dasharray: 4 2;
+        }
+        .weather-dot-max {
+            fill: #ef4444;
+        }
+        .weather-dot-min {
+            fill: #22c55e;
+        }
+        .weather-chart-labels {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .weather-max {
-            color: #ef4444;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-        .weather-bar-visual {
-            width: 80%;
-            background: linear-gradient(to top, #22c55e, #eab308, #ef4444);
-            border-radius: 3px;
-            min-height: 10px;
-        }
-        .weather-min {
-            color: #22c55e;
-            font-size: 0.7rem;
-            font-weight: bold;
-            margin-top: 2px;
-        }
-        .weather-date {
-            font-size: 0.6rem;
+            justify-content: space-between;
+            font-size: 0.65rem;
             color: #666;
             margin-top: 5px;
         }
@@ -205,7 +200,7 @@
     <div class="container">
         <div class="header">
             <h1>📡 FluxWeaver Data Collector</h1>
-            <p class="timestamp">Senaste uppdatering: 2026-03-13 21:38:39</p>
+            <p class="timestamp">Senaste uppdatering: 2026-03-13 21:42:50</p>
         </div>
         
         <div class="grid">
@@ -216,7 +211,7 @@
                 </div>
                 <div class="stat-row">
                     <span class="stat-label">Unika tåg</span>
-                    <span class="stat-value">3,642</span>
+                    <span class="stat-value">3,643</span>
                 </div>
                 <div class="stat-row">
                     <span class="stat-label">Stationer</span>
@@ -224,7 +219,7 @@
                 </div>
                 <div class="stat-row">
                     <span class="stat-label">Försenade (>2 min)</span>
-                    <span class="stat-value">7,262</span>
+                    <span class="stat-value">7,328</span>
                 </div>
                 <div class="stat-row">
                     <span class="stat-label">Pålitlighet</span>
@@ -262,22 +257,22 @@
                     <div class="histogram">
                         
                         <div class="histogram-bar" style="height: 100.0%;" title="">
-                            <span class="tooltip">0 (i tid) min<br>30,739 tåg</span>
+                            <span class="tooltip">0 (i tid) min<br>31,034 tåg</span>
                         </div>
                         <div class="histogram-bar" style="height: 57.2%;" title="">
-                            <span class="tooltip">1-10 min<br>17,584 tåg</span>
+                            <span class="tooltip">1-10 min<br>17,745 tåg</span>
                         </div>
                         <div class="histogram-bar" style="height: 3.4%;" title="">
-                            <span class="tooltip">11-20 min<br>1,045 tåg</span>
+                            <span class="tooltip">11-20 min<br>1,060 tåg</span>
                         </div>
                         <div class="histogram-bar" style="height: 0.8%;" title="">
-                            <span class="tooltip">21-30 min<br>246 tåg</span>
+                            <span class="tooltip">21-30 min<br>248 tåg</span>
                         </div>
                         <div class="histogram-bar" style="height: 0.6%;" title="">
-                            <span class="tooltip">31-60 min<br>180 tåg</span>
+                            <span class="tooltip">31-60 min<br>184 tåg</span>
                         </div>
                         <div class="histogram-bar" style="height: 7.9%;" title="">
-                            <span class="tooltip">60+ min<br>2,424 tåg</span>
+                            <span class="tooltip">60+ min<br>2,445 tåg</span>
                         </div>
                     </div>
                     <div class="histogram-labels">
@@ -315,23 +310,16 @@
                 <div class="history-section">
                     <h3>📈 30 dagars temperatur</h3>
                     <div class="weather-chart">
-                        
-                        <div class="weather-bar">
-                            <div class="weather-temp-range">
-                                <span class="weather-max">11.5°</span>
-                                <div class="weather-bar-visual" style="height: 80px"></div>
-                                <span class="weather-min">-7.6°</span>
-                            </div>
-                            <span class="weather-date">03-12</span>
-                        </div>
-                        <div class="weather-bar">
-                            <div class="weather-temp-range">
-                                <span class="weather-max">12.3°</span>
-                                <div class="weather-bar-visual" style="height: 80px"></div>
-                                <span class="weather-min">-4.9°</span>
-                            </div>
-                            <span class="weather-date">03-13</span>
-                        </div>
+                        <svg viewBox="0 0 400 100" preserveAspectRatio="none">
+                            <circle class="weather-dot-max" cx="0" cy="14.0" r="4"/><circle class="weather-dot-max" cx="180" cy="10.799999999999997" r="4"/><circle class="weather-dot-min" cx="0" cy="90.4" r="4"/><circle class="weather-dot-min" cx="180" cy="79.6" r="4"/>
+                        </svg>
+                    </div>
+                    <div class="weather-chart-labels">
+                        <span>03-12</span><span>03-13</span>
+                    </div>
+                    <div class="history-legend">
+                        <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Max</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#22c55e"></span> Min</span>
                     </div>
                 </div>
             </div>
@@ -388,5 +376,4 @@
             <p>Uppdateras automatiskt varje timme</p>
         </div>
     </div>
-</body>
 </html>
